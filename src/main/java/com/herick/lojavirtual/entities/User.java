@@ -1,3 +1,4 @@
+
 package com.herick.lojavirtual.entities;
 
 import java.time.LocalDate;
@@ -5,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +21,9 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nome;
+	private String name;
+	
+	@Column(unique = true)
 	private String email;
 	private String phone;
 	private LocalDate birthDate;
@@ -34,7 +38,7 @@ public class User {
 	public User(Long id, String nome, String email, String phone, LocalDate birthDate, String password) {
 		super();
 		this.id = id;
-		this.nome = nome;
+		this.name = nome;
 		this.email = email;
 		this.phone = phone;
 		this.birthDate = birthDate;
@@ -50,11 +54,11 @@ public class User {
 	}
 
 	public String getNome() {
-		return nome;
+		return name;
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.name = nome;
 	}
 
 	public String getEmail() {

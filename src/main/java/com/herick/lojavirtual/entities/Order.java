@@ -1,7 +1,10 @@
 package com.herick.lojavirtual.entities;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -33,8 +37,10 @@ public class Order {
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private User client;
-	
-	
+
+	@OneToMany(mappedBy = "id.order")
+	private Set<OrderItem> items = new HashSet<>();
+
 
 	public Order() {
 		super();
@@ -80,6 +86,14 @@ public class Order {
 	public void setClient(User client) {
 		this.client = client;
 	}
+	
+	public Set<OrderItem> getItems() {
+		return items;
+		}
+	
+	public List<Product> getProducts() {
+		return items.stream().map(x -> x.getProduct()).toList();
+		}
 
 	@Override
 	public int hashCode() {
@@ -97,13 +111,8 @@ public class Order {
 		Order other = (Order) obj;
 		return Objects.equals(id, other.id);
 	}
+	
+	
 
-	public Payment getPayment() {
-		return payment;
-	}
-
-	public void setPayment(Payment payment) {
-		this.payment = payment;
-	}
 
 }
