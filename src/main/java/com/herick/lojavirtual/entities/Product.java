@@ -37,9 +37,9 @@ public class Product {
 	@OneToMany(mappedBy = "id.product")
 	private Set<OrderItem> items = new HashSet<>();
 
-	public Product(Long id, String anme, String description, Double price, String imgUrl) {
+	public Product(Long id, String name, String description, Double price, String imgUrl) {
 		this.id = id;
-		this.name = anme;
+		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.imgUrl = imgUrl;
@@ -57,12 +57,12 @@ public class Product {
 		this.id = id;
 	}
 
-	public String getAnme() {
+	public String getName() {
 		return name;
 	}
 
-	public void setAnme(String anme) {
-		this.name = anme;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDescription() {
@@ -117,7 +117,5 @@ public class Product {
 		Product other = (Product) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
 
 }
