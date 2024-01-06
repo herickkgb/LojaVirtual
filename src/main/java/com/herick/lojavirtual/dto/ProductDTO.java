@@ -1,16 +1,17 @@
 package com.herick.lojavirtual.dto;
 
-import com.herick.lojavirtual.entities.Product;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import com.herick.lojavirtual.entities.Product;
 
 public class ProductDTO {
 
 	private Long id;
-	@NotBlank(message = "Campo Obrigatorio!")
+	
 	@Size(min = 3, max = 80, message = "Nome precisa ter de 3 a 80 caracteres")
+	@NotBlank(message = "Campo Obrigatorio!")
 	private String name;
 	
 	@NotBlank(message = "Campo Obrigatorio!")
